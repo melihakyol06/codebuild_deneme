@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  DenemeParam:
+    Type: String
+    Default: default deneme
+
+Globals:
+  Function:
+    Runtime: nodejs14.x
+    Timeout: 3
+
+Resources:
+
+  GetTodos:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: index.getTodos
+      Timeout: 30
+      MemorySize: 128
+      Environment:
+        Variables:
+          DenemeVariable: !Ref DenemeParam
+      Events:
+        HookPost:
+          Type: Api
+          Properties:
+            Path: /todos
+            Method: GET
