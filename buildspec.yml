@@ -1,25 +1,16 @@
 version: 0.2
 phases:
   install:
+    runtime-versions:
+      nodejs: latest
     commands:
-      - add-apt-repository ppa:deadsnakes/ppa
-      - apt-get install python3.7 -y
-      - apt install python3-pip -y
-      - pip install awscli --upgrade --user
-      - pip install --upgrade aws-sam-cli
+      - echo "installing something"
   pre_build:
     commands:
-      - mkdir -p build/
+      - echo "we are in the pre build phase"
   build:
     commands:
-      - echo Build started on `date`
-      - bash publish.sh
+      - echo "we are in the build block"
   post_build:
     commands:
-      - echo "no post build needed..."
-artifacts:
-  files:
-    - build/*
-  discard-paths: yes
-
-
+      - echo "we are in the post build phase"
